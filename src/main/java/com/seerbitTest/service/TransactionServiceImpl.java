@@ -24,17 +24,22 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void createTransaction(RequestPayload transactionRequest) throws InvalidRequestTransactionException {
 
+        // check if request body is valid
+        if (transactionRequest.getAmount() == null || transactionRequest.getAmount().equals("")) {
+            throw new InvalidRequestTransactionException(false, "");
+
+        }
         // converting iso 8601 to epoch of long value
         long timestamp = Instant.parse(transactionRequest.getTimestamp()).toEpochMilli();
 
         // check if time stamp is of the future
         if (isTransactionFuture(timestamp)) {
-            throw new InvalidRequestTransactionException(true, "Transaction is in future timestamp");
+            throw new InvalidRequestTransactionException(false, "");
         }
 // check if time stamp is 30 secs ago
         long currentTimestamp = Instant.now().toEpochMilli();
         if (!isTransactionOld(timestamp, currentTimestamp)) {
-            throw new InvalidRequestTransactionException(false, "Transaction is old");
+            throw new InvalidRequestTransactionException(false, "");
         }
 
         // transaction in right format add to transaction dto
