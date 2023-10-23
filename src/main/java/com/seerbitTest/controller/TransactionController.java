@@ -29,7 +29,8 @@ public class TransactionController {
         } catch (InvalidRequestTransactionException e) {
             if (e.isFutureTransaction()) {
                 return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(e.getMessage());
-            } else {
+            } 
+            else {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
             }
         } catch (NullPointerException | IllegalArgumentException e) {

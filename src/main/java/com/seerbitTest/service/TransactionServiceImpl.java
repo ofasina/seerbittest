@@ -23,12 +23,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void createTransaction(RequestPayload transactionRequest) throws InvalidRequestTransactionException {
-
-        // check if request body is valid
-        if (transactionRequest.getAmount() == null || transactionRequest.getAmount().equals("")) {
-            throw new InvalidRequestTransactionException(false, "");
-
-        }
         // converting iso 8601 to epoch of long value
         long timestamp = Instant.parse(transactionRequest.getTimestamp()).toEpochMilli();
 
