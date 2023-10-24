@@ -1,4 +1,4 @@
-package com.assessment.seerbit;
+package com.seerbitTest;
 
 import com.seerbitTest.exception.InvalidRequestTransactionException;
 import com.seerbitTest.payload.ResponsePayload;
