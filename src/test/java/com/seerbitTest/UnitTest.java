@@ -54,7 +54,7 @@ public class UnitTest {
 
 
     @Test
-    @DisplayName("Create a transaction with an old timestamp throws InvalidTransactionException")
+    @DisplayName("Transaction before 30 secs from current timestamp ")
     void createOldTransaction() {
 
         RequestPayload transactionRequest = new RequestPayload();
@@ -65,7 +65,7 @@ public class UnitTest {
             transactionService.createTransaction(transactionRequest);
         });
         assertFalse(exception.isFutureTransaction());
-        assertEquals("Transaction timestamp is too old", exception.getMessage());
+        assertEquals("Transaction is too old", exception.getMessage());
     }
 
     @Test

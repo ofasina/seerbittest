@@ -33,7 +33,7 @@ public class TransactionServiceImpl implements TransactionService {
 // check if time stamp is 30 secs ago
         long currentTimestamp = Instant.now().toEpochMilli();
         if (!isTransactionOld(timestamp, currentTimestamp)) {
-            throw new InvalidRequestTransactionException(false, "");
+            throw new InvalidRequestTransactionException(false, "Transaction is too old");
         }
 
         // transaction in right format add to transaction dto
